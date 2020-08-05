@@ -54,5 +54,15 @@ def profile():
      
      return redirect(url_for('root'))
 
+@app.route("/logout")
+def logout():
+    if not "auth_header" in session:
+        return redirect(url_for('root'))
+    else:
+        session.pop('auth_header')
+        print("Successfuly logged out")
+    return redirect(url_for('root')) # should redirect back to login
+
+
 if __name__ == "__main__":
      app.run(debug=True, port=spotify.PORT)

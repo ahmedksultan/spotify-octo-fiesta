@@ -1,67 +1,141 @@
 {% extends "base.html" %}
 
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/audio.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 
-     <p><i>(@{{user.id}}) | {{user.followers.total}} followers</i></p>
+     <div class="top-bar">
+          <span><i>(@{{user.id}}) | {{user.followers.total}} followers</i></span>
+          <span style="float: right;"><a class="text-success" href="/logout">Logout</a></span>
+     </div>
+     
 
-     <div class="container">
+     <div class="container" >
           <div class="row">
+               <div class="col-sm-4" style="width: 100%; padding: 0; margin: 0;"></div>
+               <div class="col-sm-8" style="padding: 0; margin: 0; width: 100%;">
+                    <h3>Recently played tracks</h3>
+               </div>
+          </div>
+          <div class="row">
+
+               <!-- user profile picture -->
                <div class="col-sm-4" style="padding: 0.4%; padding-right: 0.5%; padding-top:0%;">
                     <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
                </div>
+
+               <!-- recently played tracks (8) -->
                <div class="col-sm-8">
-                    <div class="row" class="padding-top:">
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[0].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+                    <div class="row">
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud0)>
+                              <img src="{{ recently_played[0].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud0)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[0].track.name }}</b>
+                                        <br> <br> 
+                                        {{ recently_played[0].track.artists[0].name }}
+                                   </div>
+                                   
+                                   <audio id="aud0" src="{{ recently_played[0].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[1].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud1)>
+                              <img src="{{ recently_played[1].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud1)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[1].track.name }}</b> 
+                                        <br> <br> 
+                                        {{ recently_played[1].track.artists[0].name }}
+                                   </div>
+                                   <audio id="aud1" src="{{ recently_played[1].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[2].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud2)>
+                              <img src="{{ recently_played[2].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud2)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[2].track.name }}</b> 
+                                        <br> <br> 
+                                        {{ recently_played[2].track.artists[0].name }}
+                                   </div>
+                                   
+                                   <audio id="aud2" src="{{ recently_played[2].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[3].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud3)>
+                              <img src="{{ recently_played[3].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud3)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[3].track.name }}</b>
+                                        <br> <br>
+                                        {{ recently_played[3].track.artists[0].name }}
+                                   </div>
+
+                                   <audio id="aud3" src="{{ recently_played[3].track.preview_url }}"></audio>
+                              </div>
                          </div>
                     </div>
 
                     <div class="row">
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[4].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud4)>
+                              <img src="{{ recently_played[4].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud4)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[4].track.name }}</b>
+                                        <br> <br> 
+                                        {{ recently_played[4].track.artists[0].name }}
+                                   </div>
+
+                                   <audio id="aud4" src="{{ recently_played[4].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[5].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud5)>
+                              <img src="{{ recently_played[5].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud5)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[5].track.name }}</b> 
+                                        <br> <br> 
+                                        {{ recently_played[5].track.artists[0].name }}
+                                   </div>
+
+                                   <audio id="aud5" src="{{ recently_played[5].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[6].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud6)>
+                              <img src="{{ recently_played[6].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud6)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[6].track.name }}</b> 
+                                        <br> <br> 
+                                        {{ recently_played[6].track.artists[0].name }}
+                                   </div>
+
+                                   <audio id="aud6" src="{{ recently_played[6].track.preview_url }}"></audio>
+                              </div>
                          </div>
-                         <div class="col-sm-3" style="padding: 1%; padding-top: 0%; padding-left: 0;">
-                              <img src="{{ recently_played[7].track.album.images[0].url }}" class="rounded" style="width: 100%; height: auto;">
+
+                         <div class="col-sm-3 ovl" style="padding: 1%; padding-top: 0%; padding-left: 0;" onmouseleave=stopAudio(aud7)>
+                              <img src="{{ recently_played[7].track.album.images[0].url }}" class="rounded img-fluid">
+                              <div class="rounded overlay" onmouseover="playAudio(aud7)">
+                                   <div class="small info-text">
+                                        <b>{{ recently_played[7].track.name }}</b> 
+                                        <br> <br> 
+                                        {{ recently_played[7].track.artists[0].name }}
+                                   </div>
+
+                                   <audio id="aud7" src="{{ recently_played[7].track.preview_url }}"></audio>
+                              </div>
                          </div>
                     </div>
-               <!--
-                    <div class="row">
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                         <div class="col-sm-2">
-                              <img src={{user.images[0].url}} class="rounded" style="width: 100%; height: auto;">
-                         </div>
-                    </div>
-               -->
                </div>
+
           </div>
      </div>
      

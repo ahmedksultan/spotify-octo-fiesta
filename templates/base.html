@@ -7,13 +7,14 @@
           <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet"> 
           <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-          {% block scripts %}
-          {% endblock %}
      </head>
 
      <body>
           <h1>{{ title }}</h1>
           {% block body %}
+          {% endblock %}
+
+          {% block scripts %}
           {% endblock %}
      </body>
 </html>
